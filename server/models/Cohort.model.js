@@ -3,33 +3,49 @@ const Schema = mongoose.Schema;
 
 // CREATE SCHEMA
 const cohortSchema = new Schema({
-  title: { 
+  cohortSlug: { 
     type: String, 
     required: true, 
     unique: true 
 },
-  instructions: { 
+  cohortName: { 
     type: String, 
     required: true 
 },
-  level: { 
+  program: { 
     type: String, 
-    enum: ["Easy Peasy", "Amateur Chef", "UltraPro Chef"] 
+    enum: ["Web Dev", "UX/UI", "Data Analytics", "Cybersecurity"] 
 },
-  ingredients: { type: [String] },
-  image: {
+  format: {
+    type: String, 
+    enum: ["Full Time", "Part Time"] 
+},
+  campus: {
     type: String,
-    default: "https://images.media-allrecipes.com/images/75131.jpg"
+    enum: ["Madrid", "Barcelona", "Miami", "Paris", "Berlin", "Amsterdam", "Lisbon", "Remote"] 
   },
-  duration: {type: Number, min: 0},
-  isArchived: {
-    type: Boolean,
-    default: false, 
-},
-    created: { 
+    startDate: { 
     type: Date,
     default: Date.now 
-    }
+    },
+    endDate: { 
+      type: Date
+      }, 
+    inProgress: { 
+      type: Boolean,
+      default: false
+     }, 
+     programManager: {
+      type: String, 
+      required: true 
+     }, 
+     leadTeacher: {
+      type: String, 
+      required: true 
+     }, 
+     totalHours: {
+      type: Number
+     }
 });
 
 // CREATE MODEL
