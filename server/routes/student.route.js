@@ -17,15 +17,21 @@ router.get("/", (req, res) => {
   });
   // GET : student by id
   router.get("/:studentId", (req, res) => {
-    let { studentId } = req.params;
-    studentId  = parseInt(studentId);
-    
-  
-    Student.findById(studentId)
+    Student.findById(req.params.studentId)
       .then((student) =>res.status(200).json(student))
       .catch((err) =>
         res.status(404).json({ message: "Error , in retriving a student" + err.message })
       );
+  });
+
+
+
+  // GET /cohort/:cohortId
+  router.get('/cohort/:cohortId' , (req, res) => {
+      Student.find({cohort: req.params.cohortId})
+      .then((students) => res.status(200).json(students))
+      .catch(err => res.status(500).json({message:`Error while retreiving students..` , type:err.message}));
+
   });
   // POST
   router.post('/' , async (req,res) => {
@@ -39,11 +45,8 @@ router.get("/", (req, res) => {
   });
   // PUT
   router.put('/:studentId' , async (req,res) => {
-    const {studentId} = req.params;
-    studentId = parseInt(studentId);
-  
     try{
-      const updatedStudent = await Student.findByIdAndUpdate(studentId , req.body);
+      const updatedStudent = await Student.findByIdAndUpdate(req.params.studentId , req.body);
       res.status(200).json(updatedStudent);
     }
     catch(err) {
@@ -52,11 +55,8 @@ router.get("/", (req, res) => {
   });
   // DELETE
   router.delete('/:studentId' , async (req,res) => {
-    const {studentId} = req.params;
-    studentId = parseInt(studentId);
-  
     try{
-      await Student.findByIdAndDelete(studentId , req.body);
+      await Student.findByIdAndDelete(req.params.studentId , req.body);
       res.json({message: "successfully deleted on student from the database.."});
     }
     catch(err) {
