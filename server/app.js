@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const studentRouter = require('./routes/student.route');
+const cohortRouter = require('./routes/cohort.route');
 
 const app = express();
 
@@ -22,14 +23,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api/students',studentRouter);
+app.use('/api/cohorts',cohortRouter);
 
 // Routes:
 app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");
 });
 
-// Cohort Routes
-app.get("/api/cohorts", (req, res) => {});
 
 
 // START SERVER
