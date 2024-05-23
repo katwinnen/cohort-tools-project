@@ -3,49 +3,57 @@ const Schema = mongoose.Schema;
 
 // CREATE SCHEMA
 const studentSchema = new Schema({
-  firstName: { 
-    type: String, 
-    required: true, 
-},
-  lastName: { 
-    type: String, 
-    required: true 
-},
-  email: { 
-    type: String, 
-    required: true, 
-    unique: true 
-},
+    firstName: {
+        type: String,
+        required: true,
+    },
+    lastName: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     phone: {
-        type: String, 
-        required: true
-    }, 
+        type: String,
+        required: true,
+    },
     linkedInUrl: {
-        type: String, 
-        default: ""
-    }, 
+        type: String,
+        default: "",
+    },
     languages: {
-        type: [String], 
-        enum: ["English", "Spanish", "French", "German", "Portuguese", "Dutch", "Other"]  
-    }, 
+        type: [String],
+        enum: [
+            "English",
+            "Spanish",
+            "French",
+            "German",
+            "Portuguese",
+            "Dutch",
+            "Other",
+        ],
+    },
     program: {
-        type: String, 
-        enum: ["Web Dev", "UX/UI", "Data Analytics", "Cybersecurity"]
-    }, 
+        type: String,
+        enum: ["Web Dev", "UX/UI", "Data Analytics", "Cybersecurity"],
+    },
     background: {
-        type: String, 
-        default: ""
-    }, 
+        type: String,
+        default: "",
+    },
     image: {
         type: String,
-        default: "https://i.imgur.com/r8bo8u7.png"
-      },  
+        default: "https://i.imgur.com/r8bo8u7.png",
+    },
     cohort: {
-        type: mongoose.Schema.Types.objectId,
-    }, 
+        type: mongoose.Schema.Types.ObjectId
+    },
     projects: {
-        type: Array
-    }
+        type: Array,
+    },
 });
 
 // CREATE MODEL
