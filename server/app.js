@@ -30,6 +30,8 @@ app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");
 });
 
+const authRouter = require("./routes/auth.routes");      
+app.use("/auth", authRouter);      
 
 
 // START SERVER
@@ -37,3 +39,5 @@ const port = process.env.PORT || 5005;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+
+module.exports = app;
